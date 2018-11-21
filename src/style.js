@@ -4,6 +4,7 @@ export default {
   container: {
     flex: 1,
     backgroundColor: Constants.appScreensBackgroundColor,
+    marginBottom: 50
   },
   top10: {
     marginTop: 10

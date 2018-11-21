@@ -54,13 +54,13 @@ export default class Root extends Component {
     /**
      * To handle the API Catch
      */
-    if(!infoUser && !repoUser) {
+    if (!infoUser && !repoUser) {
       this.setState({
         isLoding: false
       })
       return false;
     }
-      
+
     this.setState({
       isShowing: false,
       isUserExist: false,
@@ -95,7 +95,7 @@ export default class Root extends Component {
   _renderListEmpty = () => {
     return (
       <View style={styles.centerView}>
-        <Text style={styles.userName}>Don't have Repositories Yet</Text>
+        <Text style={styles.userName}>{`Don't have Repositories Yet`}</Text>
       </View>
     );
   }
@@ -115,31 +115,27 @@ export default class Root extends Component {
           isLoding ? <View style={styles.centerView}>
             <ActivityIndicator size="large" color="#1E8AF1" />
           </View> :
-            isShowing && (isUserExist ? <View style={{ backgroundColor: 'yellow', flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+            isShowing && (isUserExist ? <View style={{ flex: 1 }}>
+              <View style={styles.top10}>
+                <Image
+                  source={{ uri: userInfo.avatar_url }}
+                  style={styles.userImage}
+                />
+                <Text style={styles.userName}>{userInfo.name}</Text>
+              </View>
               <View style={{ flex: 1 }}>
-                <View style={styles.top10}>
-                  <Image
-                    source={{ uri: userInfo.avatar_url }}
-                    style={styles.userImage}
-                  />
-                  <Text style={styles.userName}>{userInfo.name}</Text>
+                <View style={styles.repoMainView}>
+                  <Text style={styles.repoText}>Repositories</Text>
                 </View>
-                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <View style={{ flex: 1 }}>
-                    <View style={styles.repoMainView}>
-                      <Text style={styles.repoText}>Repositories</Text>
-                    </View>
-                    <View style={[styles.top10, { marginBottom: 20, backgroundColor: 'red' }]}>
-                      <FlatList
-                        data={userRepo}
-                        extraData={this.state}
-                        keyExtractor={this._keyExtractor}
-                        renderItem={this._renderItem}
-                        ItemSeparatorComponent={this.renderSeparator}
-                        ListEmptyComponent={this._renderListEmpty}
-                      />
-                    </View>
-                  </View>
+                <View style={styles.top10}>
+                  <FlatList
+                    data={userRepo}
+                    extraData={this.state}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={this._renderItem}
+                    ItemSeparatorComponent={this.renderSeparator}
+                    ListEmptyComponent={this._renderListEmpty}
+                  />
                 </View>
               </View>
             </View> : <View style={styles.centerView}>
