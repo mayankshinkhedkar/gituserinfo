@@ -27,6 +27,5 @@ react-native start
 ```
 
 ### 4. Get the Android APK from here
-```bash
+
 [Click Here](https://github.com/mayankshinkhedkar/gituserinfo/blob/master/apk/gituserinfo-app-release-21-11-2018.apk)
-```
